@@ -17,13 +17,13 @@ sea justa.
 
 ## Decisión
 
-**Motor:** se adopta **MySQL 8** como única base de datos, compartida por ambas
-implementaciones mediante el mismo esquema (`schema.sql`).
+Motor: se adopta PostgreSQL como única base de datos, compartida por ambas implementaciones mediante el mismo esquema (`schema_postgres.sql`).
 
 Razones:
-- MySQL está disponible en prácticamente todos los hosting compartidos de
-  Ecuador, alineado con ADR-001.
-- Un esquema único garantiza que PHP y Spring operen sobre datos idénticos.
+
+- PostgreSQL permite trabajar con una base de datos relacional robusta y compatible con ambas implementaciones del proyecto.
+- Un esquema único garantiza que PHP y Spring Boot operen sobre datos equivalentes.
+- La práctica se ejecutó localmente con PostgreSQL, manteniendo la misma base `veterinaria_db` para las dos tecnologías.
 
 **Mecanismo de acceso a datos:**
 
