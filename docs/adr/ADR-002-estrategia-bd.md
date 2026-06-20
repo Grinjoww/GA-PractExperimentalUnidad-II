@@ -22,7 +22,7 @@ Motor: se adopta PostgreSQL como única base de datos, compartida por ambas impl
 Razones:
 
 - PostgreSQL permite trabajar con una base de datos relacional robusta y compatible con ambas implementaciones del proyecto.
-- Un esquema único garantiza que PHP y Spring Boot operen sobre datos equivalentes.
+- Un esquema único garantiza que PHP y Spring Boot operen sobre datos equivalentes
 - La práctica se ejecutó localmente con PostgreSQL, manteniendo la misma base `veterinaria_db` para las dos tecnologías.
 
 **Mecanismo de acceso a datos:**
