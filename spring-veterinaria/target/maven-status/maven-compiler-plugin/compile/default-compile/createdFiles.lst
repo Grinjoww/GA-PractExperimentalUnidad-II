@@ -1,0 +1,10 @@
+com\uteq\veterinaria\config\SecurityConfig.class
+com\uteq\veterinaria\model\Mascota.class
+com\uteq\veterinaria\model\Usuario.class
+com\uteq\veterinaria\security\UsuarioDetailsService.class
+com\uteq\veterinaria\controller\MascotaController.class
+com\uteq\veterinaria\VeterinariaApplication.class
+com\uteq\veterinaria\repository\MascotaRepository.class
+com\uteq\veterinaria\security\RegistroService.class
+com\uteq\veterinaria\controller\AuthController.class
+com\uteq\veterinaria\repository\UsuarioRepository.class

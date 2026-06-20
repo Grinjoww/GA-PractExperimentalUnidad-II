@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Mascotas registradas')}"></head>
+<body>
+<header th:replace="~{fragments/layout :: barra}"></header>
+
+<main class="contenedor">
+    <div class="cabecera-seccion">
+        <h1>Mascotas registradas</h1>
+        <a th:href="@{/mascotas/nueva}" class="btn btn-primario">+ Nueva mascota</a>
+    </div>
+
+    <p class="alerta alerta-ok" th:if="${exito}" th:text="${exito}"></p>
+
+    <p class="vacio" th:if="${#lists.isEmpty(mascotas)}">
+        Aún no hay mascotas registradas.
+    </p>
+
+    <table class="tabla" th:unless="${#lists.isEmpty(mascotas)}">
+        <thead>
+            <tr>
+                <th>Nombre</th><th>Especie</th><th>Raza</th>
+                <th>Edad</th><th>Dueño</th><th>Teléfono</th><th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Thymeleaf escapa con th:text por defecto (anti XSS). -->
+            <tr th:each="m : ${mascotas}">
+                <td th:text="${m.nombre()}">—</td>
+                <td th:text="${m.especie()}">—</td>
+                <td th:text="${m.raza() != null ? m.raza() : '—'}">—</td>
+                <td th:text="${m.edad() != null ? m.edad() : '—'}">—</td>
+                <td th:text="${m.nombreDueno()}">—</td>
+                <td th:text="${m.telefono() != null ? m.telefono() : '—'}">—</td>
+                <td class="acciones">
+                    <a th:href="@{/mascotas/editar/{id}(id=${m.id()})}"
+                       class="btn btn-mini">Editar</a>
+                    <form th:action="@{/mascotas/eliminar/{id}(id=${m.id()})}"
+                          method="post" class="inline"
+                          onsubmit="return confirm('¿Eliminar esta mascota?');">
+                        <button type="submit" class="btn btn-mini btn-peligro">
+                            Eliminar
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</main>
+
+<footer th:replace="~{fragments/layout :: pie}"></footer>
+</body>
+</html>

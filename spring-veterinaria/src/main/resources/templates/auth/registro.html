@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Crear cuenta')}"></head>
+<body>
+<header th:replace="~{fragments/layout :: barra}"></header>
+
+<main class="contenedor">
+    <div class="tarjeta tarjeta-auth">
+        <h1>Crear cuenta</h1>
+
+        <div th:if="${ok}">
+            <p class="alerta alerta-ok">
+                Cuenta creada. Ya puedes <a th:href="@{/login}">iniciar sesión</a>.
+            </p>
+        </div>
+
+        <div th:unless="${ok}">
+            <p class="alerta alerta-error" th:if="${error}" th:text="${error}"></p>
+
+            <form th:action="@{/registro}" method="post" autocomplete="off">
+                <label>Nombre
+                    <input type="text" name="nombre" required maxlength="100">
+                </label>
+                <label>Correo
+                    <input type="email" name="email" required maxlength="150">
+                </label>
+                <label>Contraseña (mín. 8 caracteres)
+                    <input type="password" name="password" required minlength="8">
+                </label>
+                <button type="submit" class="btn btn-primario">Registrarme</button>
+            </form>
+
+            <p class="enlace-secundario">
+                ¿Ya tienes cuenta? <a th:href="@{/login}">Inicia sesión</a>
+            </p>
+        </div>
+    </div>
+</main>
+
+<footer th:replace="~{fragments/layout :: pie}"></footer>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:fragment="head(titulo)">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${titulo}">Veterinaria</title>
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
+</head>
+<body>
+
+<header class="barra" th:fragment="barra">
+    <span class="logo">🐾 Clínica Veterinaria</span>
+    <nav sec:authorize="isAuthenticated()">
+        <span>Hola, <span sec:authentication="name">usuario</span></span>
+        <a th:href="@{/mascotas}">Mascotas</a>
+        <form th:action="@{/logout}" method="post" class="inline">
+            <button type="submit" class="btn btn-mini">Salir</button>
+        </form>
+    </nav>
+</header>
+
+<footer class="pie" th:fragment="pie">
+    <small>UTEQ · Aplicaciones Web · Proyecto Fin de Curso</small>
+</footer>
+
+</body>
+</html>

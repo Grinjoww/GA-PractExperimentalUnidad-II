@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Mascota')}"></head>
+<body>
+<header th:replace="~{fragments/layout :: barra}"></header>
+
+<main class="contenedor">
+    <div class="tarjeta">
+        <h1 th:text="${mascota != null ? 'Editar mascota' : 'Nueva mascota'}">Mascota</h1>
+
+        <form th:action="@{/mascotas/guardar}" method="post">
+            <input type="hidden" name="id"
+                   th:if="${mascota != null}" th:value="${mascota.id()}">
+
+            <label>Nombre *
+                <input type="text" name="nombre" required maxlength="100"
+                       th:value="${mascota != null ? mascota.nombre() : ''}">
+            </label>
+            <label>Especie *
+                <input type="text" name="especie" required maxlength="50"
+                       th:value="${mascota != null ? mascota.especie() : ''}">
+            </label>
+            <label>Raza
+                <input type="text" name="raza" maxlength="80"
+                       th:value="${mascota != null ? mascota.raza() : ''}">
+            </label>
+            <label>Edad (años)
+                <input type="number" name="edad" min="0" max="120"
+                       th:value="${mascota != null ? mascota.edad() : ''}">
+            </label>
+            <label>Nombre del dueño *
+                <input type="text" name="nombreDueno" required maxlength="120"
+                       th:value="${mascota != null ? mascota.nombreDueno() : ''}">
+            </label>
+            <label>Teléfono
+                <input type="text" name="telefono" maxlength="20"
+                       th:value="${mascota != null ? mascota.telefono() : ''}">
+            </label>
+
+            <div class="acciones-form">
+                <button type="submit" class="btn btn-primario"
+                        th:text="${mascota != null ? 'Guardar cambios' : 'Registrar'}">
+                    Guardar
+                </button>
+                <a th:href="@{/mascotas}" class="btn btn-secundario">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</main>
+
+<footer th:replace="~{fragments/layout :: pie}"></footer>
+</body>
+</html>

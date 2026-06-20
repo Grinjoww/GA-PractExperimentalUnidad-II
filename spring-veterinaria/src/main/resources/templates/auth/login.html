@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Iniciar sesión')}"></head>
+<body>
+<header th:replace="~{fragments/layout :: barra}"></header>
+
+<main class="contenedor">
+    <div class="tarjeta tarjeta-auth">
+        <h1>Iniciar sesión</h1>
+
+        <p class="alerta alerta-error" th:if="${param.error}">
+            Credenciales incorrectas.
+        </p>
+        <p class="alerta alerta-ok" th:if="${param.logout}">
+            Sesión cerrada correctamente.
+        </p>
+
+        <!-- Spring Security procesa POST /login. El token CSRF
+             se inyecta automáticamente por Thymeleaf. -->
+        <form th:action="@{/login}" method="post" autocomplete="off">
+            <label>Correo
+                <input type="email" name="username" required>
+            </label>
+            <label>Contraseña
+                <input type="password" name="password" required>
+            </label>
+            <button type="submit" class="btn btn-primario">Entrar</button>
+        </form>
+
+        <p class="enlace-secundario">
+            ¿No tienes cuenta? <a th:href="@{/registro}">Regístrate</a>
+        </p>
+    </div>
+</main>
+
+<footer th:replace="~{fragments/layout :: pie}"></footer>
+</body>
+</html>
