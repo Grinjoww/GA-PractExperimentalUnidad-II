@@ -1,0 +1,6 @@
+parameters:
+    level: 5
+    paths:
+        - src
+    # Argon2id constants pueden no estar en stubs según entorno
+    ignoreErrors: []
